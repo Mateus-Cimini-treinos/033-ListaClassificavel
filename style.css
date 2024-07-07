@@ -109,11 +109,6 @@ h1, p {
   outline: none;
 }
 
-.draggable-list li.dragging .draggable {
-  opacity: 0.5;
-}
-
-
 footer {
   text-align: center;
   position: relative;
