@@ -16,7 +16,7 @@
 
 body {
   font-family: "Blinker", sans-serif;
-  background-color: var(--background-color);
+  background-color: blue;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,7 +88,7 @@ h1, p {
 .check-btn {
   background-color: var(--background-secondary-color);
   border: none;
-  color: brown;
+  color: var(--text-color);
   font-size: 1rem;
   padding: 0.625rem 1.25rem;
   cursor: pointer;
