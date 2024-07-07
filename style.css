@@ -42,6 +42,7 @@ h1, p {
   background-color: var(--background-color);
   display: flex;
   flex: 1;
+  transition: all 0.3s ease;
 }
 
 .draggable-list li:not(:last-of-type) {
@@ -60,6 +61,7 @@ h1, p {
 
 .draggable-list li.over .draggable {
   background-color: var(--draggable-color);
+  transition: background-color 0.3s ease;
 }
 
 .draggable-list .person-name {
@@ -91,6 +93,7 @@ h1, p {
   padding: 0.625rem 1.25rem;
   cursor: pointer;
   margin: 1rem 0;
+  transition: all 0.3s ease;
 }
 
 .check-btn:active {

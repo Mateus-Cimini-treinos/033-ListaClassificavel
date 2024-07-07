@@ -2,8 +2,8 @@ const draggableList = document.getElementById("draggable-list");
 const check = document.getElementById("check");
 
 const richestPeople = [
-   "Dragon Ball", "Naruto", "One Piece", "Death Note", "Jujutsu Kaisen", "Kimetsu no Yaiba", "Vinland Saga", "Haikyuu", "Jojo", "Chainsaw Man", "Hunter x Hunter", "Blue Lock", "Dr.Stone", "Nanatsu no Taizai", "Mushoku Tensei", "RE:zero"
- ];
+  "Dragon Ball", "Naruto", "One Piece", "Death Note", "Jujutsu Kaisen", "Kimetsu no Yaiba", "Vinland Saga", "Haikyuu", "Jojo", "Chainsaw Man", "Hunter x Hunter", "Blue Lock", "Dr.Stone", "Nanatsu no Taizai", "Mushoku Tensei", "RE:Zero"
+];
 const listItems = [];
 
 let dragStartIndex;
@@ -32,6 +32,7 @@ function createList() {
 
 function dragStart() {
   dragStartIndex = +this.closest("li").getAttribute("data-index");
+  this.closest("li").classList.add('dragging');
 }
 
 function dragEnter() {
@@ -50,6 +51,8 @@ function dragDrop() {
   const dragEndIndex = +this.getAttribute("data-index");
   swapItems(dragStartIndex, dragEndIndex);
   this.classList.remove("over");
+  listItems[dragStartIndex].classList.remove('dragging');
+  listItems[dragEndIndex].classList.remove('dragging');
 }
 
 function swapItems(fromIndex, toIndex) {
@@ -72,6 +75,7 @@ function checkOrder() {
 
 function touchStart() {
   dragStartIndex = +this.closest("li").getAttribute("data-index");
+  this.closest("li").classList.add('dragging');
 }
 
 function touchMove(e) {
@@ -92,6 +96,8 @@ function touchEnd(e) {
     swapItems(dragStartIndex, dragEndIndex);
   }
   document.querySelectorAll(".draggable-list li").forEach((item) => item.classList.remove("over"));
+  listItems[dragStartIndex].classList.remove('dragging');
+  listItems[dragEndIndex].classList.remove('dragging');
 }
 
 function addListeners() {
