@@ -16,7 +16,7 @@
 
 body {
   font-family: "Blinker", sans-serif;
-  background-color: blue;
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
