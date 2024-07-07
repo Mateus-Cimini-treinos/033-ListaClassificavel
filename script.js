@@ -1,4 +1,3 @@
-
 const draggableList = document.getElementById("draggable-list");
 const check = document.getElementById("check");
 
@@ -54,10 +53,8 @@ function dragDrop() {
 }
 
 function swapItems(fromIndex, toIndex) {
-  // Get Items
   const itemOne = listItems[fromIndex].querySelector(".draggable");
   const itemTwo = listItems[toIndex].querySelector(".draggable");
-  // Swap Items
   listItems[fromIndex].appendChild(itemTwo);
   listItems[toIndex].appendChild(itemOne);
 }
@@ -73,13 +70,41 @@ function checkOrder() {
   });
 }
 
-// Event Listeners
+function touchStart() {
+  dragStartIndex = +this.closest("li").getAttribute("data-index");
+}
+
+function touchMove(e) {
+  e.preventDefault();
+  const touchLocation = e.targetTouches[0];
+  const element = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
+  if (element && element.closest(".draggable-list li")) {
+    element.closest(".draggable-list li").classList.add("over");
+  }
+}
+
+function touchEnd(e) {
+  e.preventDefault();
+  const touchLocation = e.changedTouches[0];
+  const element = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
+  if (element && element.closest(".draggable-list li")) {
+    const dragEndIndex = +element.closest("li").getAttribute("data-index");
+    swapItems(dragStartIndex, dragEndIndex);
+  }
+  document.querySelectorAll(".draggable-list li").forEach((item) => item.classList.remove("over"));
+}
+
 function addListeners() {
   const draggables = document.querySelectorAll(".draggable");
   const dragListItems = document.querySelectorAll(".draggable-list li");
+
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", dragStart);
+    draggable.addEventListener("touchstart", touchStart, { passive: true });
+    draggable.addEventListener("touchmove", touchMove, { passive: true });
+    draggable.addEventListener("touchend", touchEnd, { passive: true });
   });
+
   dragListItems.forEach((item) => {
     item.addEventListener("dragover", dragOver);
     item.addEventListener("drop", dragDrop);
@@ -90,5 +115,4 @@ function addListeners() {
 
 check.addEventListener("click", checkOrder);
 
-// Init
 createList();
