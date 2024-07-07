@@ -73,9 +73,18 @@ function checkOrder() {
   });
 }
 
+function disableScroll() {
+  document.body.style.overflow = 'hidden';
+}
+
+function enableScroll() {
+  document.body.style.overflow = '';
+}
+
 function touchStart() {
   dragStartIndex = +this.closest("li").getAttribute("data-index");
   this.closest("li").classList.add('dragging');
+  disableScroll();
 }
 
 function touchMove(e) {
@@ -98,6 +107,7 @@ function touchEnd(e) {
   document.querySelectorAll(".draggable-list li").forEach((item) => item.classList.remove("over"));
   listItems[dragStartIndex].classList.remove('dragging');
   listItems[dragEndIndex].classList.remove('dragging');
+  enableScroll();
 }
 
 function addListeners() {
@@ -107,7 +117,7 @@ function addListeners() {
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", dragStart);
     draggable.addEventListener("touchstart", touchStart, { passive: true });
-    draggable.addEventListener("touchmove", touchMove, { passive: true });
+    draggable.addEventListener("touchmove", touchMove, { passive: false });
     draggable.addEventListener("touchend", touchEnd, { passive: true });
   });
 
