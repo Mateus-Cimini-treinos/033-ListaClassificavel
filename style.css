@@ -88,7 +88,7 @@ h1, p {
 .check-btn {
   background-color: var(--background-secondary-color);
   border: none;
-  color: var(--text-color);
+  color: brown;
   font-size: 1rem;
   padding: 0.625rem 1.25rem;
   cursor: pointer;
