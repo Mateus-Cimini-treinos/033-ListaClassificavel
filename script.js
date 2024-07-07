@@ -116,9 +116,9 @@ function addListeners() {
 
   draggables.forEach((draggable) => {
     draggable.addEventListener("dragstart", dragStart);
-    draggable.addEventListener("touchstart", touchStart, { passive: true });
+    draggable.addEventListener("touchstart", touchStart, { passive: false });
     draggable.addEventListener("touchmove", touchMove, { passive: false });
-    draggable.addEventListener("touchend", touchEnd, { passive: true });
+    draggable.addEventListener("touchend", touchEnd, { passive: false });
   });
 
   dragListItems.forEach((item) => {
